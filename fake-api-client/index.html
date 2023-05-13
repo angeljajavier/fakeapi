@@ -1,82 +1,120 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  	<title>How To Response JSON in PHP Using jQuery Ajax</title>
+
+  	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+	<!-- Sweetalert 2 CSS -->
+	<link rel="stylesheet" href="assets/plugins/sweetalert2/sweetalert2.min.css">
+  	
+  	<!-- Page CSS -->
+  	<link rel="stylesheet" href="assets/css/styles.css">
 </head>
+  
 <body>
-    <button onclick="get_record()">Get Record</button>
-    <button onclick="add_record()">Add Record</button>
-    <button onclick="update_record()">Update Record</button>
-    <button onclick="delete_record()">Delete Record</button>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+   
+	<div class="container">
 
-    <script>
-        function get_record() {
-            $.ajax({
-                url: "http://fakeapi.test/students/",
-                method: "GET",
-                success: function(response) {
-                    console.log(response)
-                },
-                error: function(xhr, status, error) {
-                    var err = eval("(" + xhr.responseText + ")");                    
-                    console.log(err.Message);
-                }
-            });
-        }
+		<br><br>
 
-        function add_record() {
-            $.ajax({
-                url: "http://fakeapi.test/students/",
-                method: "POST",
-                data: {
-                    "name": "Pepito Manaloto",
-                    "course": "AB PolSci"
-                },
-                success: function(response) {
-                    console.log(response)
-                },
-                error: function(xhr, status, error) {
-                    var err = eval("(" + xhr.responseText + ")");                    
-                    console.log(err.Message);
-                }
-            });
-        }
+	    <h1>FAKE API</h1>
 
-        function update_record() {
-            $.ajax({
-                url: "http://fakeapi.test/students/index.php?id=1",
-                method: "PUT",
-                data: {
-                    "name": "Pedro Penduko",
-                    "course": "BSIT"
-                },
-                success: function(response) {
-                    console.log(response)
-                },
-                error: function(xhr, status, error) {
-                    var err = eval("(" + xhr.responseText + ")");                    
-                    console.log(err.Message);
-                }
-            });
-        }
+	    <br><br>
+	    <button type="button" class="btn btn-primary" id="btnBasicResponse">Please Button</button>
+	    <br>
+	    <p><span id="json_first_name"></span></p>
+	    <br><br>
+	    
+	    <div class="row">
+	    	<div class="col-md-4">
+	    		<h3>Add New Employee</h3>
 
-        function delete_record() {
-            $.ajax({
-                url: "http://fakeapi.test/students/index.php?id=1",
-                method: "DELETE",
-                success: function(response) {
-                    console.log(response)
-                },
-                error: function(xhr, status, error) {
-                    var err = eval("(" + xhr.responseText + ")");                    
-                    console.log(err.Message);
-                }
-            });
-        }
-    </script>
+			    <form action="save.php" id="form">
+			    	<div class="form-group">
+					    <label for="email">Email</label>
+					    <input class="form-control" type="text" name="email">
+				  	</div>
+				  	<div class="form-group">
+					    <label for="first_name">First Name</label>
+					    <input class="form-control" type="text" name="first_name">
+				  	</div>
+				  	<div class="form-group">
+					    <label for="last_name">Last Name</label>
+					    <input class="form-control" type="text" name="last_name">
+				  	</div>
+				  	<div class="form-group">
+					    <label for="address">Address</label>
+					    <textarea class="form-control" type="text" name="address" rows="3"></textarea>
+				  	</div>
+				  	<button type="button" class="btn btn-primary" id="btnSubmit">Submit</button>
+				</form>
+	    	</div>
+
+	    	<div class="col-md-8">
+	    		<h3>List of Employees</h3>
+	    		<div id="employees-list"></div>
+	    	</div>
+	    </div>
+	</div>
+
+	<!-- The Modal -->
+	<div class="modal" id="edit-employee-modal">
+	  	<div class="modal-dialog">
+		    <div class="modal-content">
+
+		      	<!-- Modal Header -->
+		      	<div class="modal-header">
+			        <h4 class="modal-title">Edit Employee</h4>
+			        <button type="button" class="close" data-dismiss="modal">&times;</button>
+		      	</div>
+
+		      	<!-- Modal body -->
+		      	<div class="modal-body">
+		        	<form action="update.php" id="edit-form">
+		        		<input class="form-control" type="hidden" name="id">
+				    	<div class="form-group">
+						    <label for="email">Email</label>
+						    <input class="form-control" type="text" name="email">
+					  	</div>
+					  	<div class="form-group">
+						    <label for="first_name">First Name</label>
+						    <input class="form-control" type="text" name="first_name">
+					  	</div>
+					  	<div class="form-group">
+						    <label for="last_name">Last Name</label>
+						    <input class="form-control" type="text" name="last_name">
+					  	</div>
+					  	<div class="form-group">
+						    <label for="address">Address</label>
+						    <textarea class="form-control" type="text" name="address" rows="3"></textarea>
+					  	</div>
+					  	<button type="button" class="btn btn-primary" id="btnUpdateSubmit">Update</button>
+					  	<button type="button" class="btn btn-danger float-right" data-dismiss="modal">Close</button>
+					</form>
+
+
+		      	</div>
+
+		    </div>
+	  	</div>
+	</div>
+
+
+	<!-- Must put our javascript files here to fast the page loading -->
+	
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<!-- Popper JS -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<!-- Bootstrap JS -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	<!-- Sweetalert2 JS -->
+	<script src="assets/plugins/sweetalert2/sweetalert2.min.js"></script>
+	<!-- Page Script -->
+	<script src="assets/js/scripts.js"></script>
+
 </body>
+  
 </html>
