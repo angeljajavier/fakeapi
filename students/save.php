@@ -24,7 +24,7 @@
 
 		// Process the query
 		if ($db->query($sql)) {
-		  $result['response'] = "Employee has been created.";
+		  $result['response'] = "Student has been created.";
 		} else {
 		  $result['response'] = "Error: " . $sql . "<br>" . $db->error;
 		}

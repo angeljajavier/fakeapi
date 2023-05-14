@@ -9,7 +9,7 @@
 	// set the server password (you must put password here if your using live server)
 	$password = "";
 	// set the table name
-	$dbname = "studenlist"; 
+	$dbname = "studentlist"; 
 
 	$db = new mysqli($servername, $username, $password, $dbname);
 
