@@ -16,11 +16,11 @@
 	$address = $request['address'];
 
 	// Set the UPDATE SQL data
-	$sql = "UPDATE employees SET email='".$email."', first_name='".$first_name."', last_name='".$last_name."', address='".$address."' WHERE id='".$id."'";
+	$sql = "UPDATE studentlist SET email='".$email."', first_name='".$first_name."', last_name='".$last_name."', address='".$address."' WHERE id='".$id."'";
 
 	// Process the query
 	if ($db->query($sql)) {
-	  echo "Employee has been updated.";
+	  echo "Student List has been updated.";
 	} else {
 	  echo "Error: " . $sql . "<br>" . $db->error;
 	}

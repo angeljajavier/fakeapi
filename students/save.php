@@ -19,7 +19,7 @@
 	// Check if no errors
 	if(isEmail($email)):
 		// SQL Statement
-		$sql = "INSERT INTO employees (email, first_name, last_name, address)
+		$sql = "INSERT INTO studentlist (email, first_name, last_name, address)
 		VALUES ('".$email."', '".$first_name."', '".$last_name."', '".$address."')";
 
 		// Process the query

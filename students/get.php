@@ -5,10 +5,10 @@
 	//a PHP Super Global variable which used to collect data after submitting it from the form
 	$request = $_REQUEST;
 	//define the employee ID
-	$employeeId = $request['employee_id'];
+	$studentId = $request['student_id'];
 
 	// Set the INSERT SQL data
-	$sql = "SELECT * FROM employees WHERE id='".$employeeId."'";
+	$sql = "SELECT * FROM studentlist WHERE id='".$studentId."'";
 
 	// Process the query
 	$results = $db->query($sql);
