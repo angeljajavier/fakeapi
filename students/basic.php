@@ -1,8 +1,8 @@
 <?php
 	
 	$result = [];
-	$result['first_name'] = "John";
-	$result['last_name'] = "Doe";
+	$result['first_name'] = "Kyoko";
+	$result['last_name'] = "Haru";
 
 	echo json_encode($result);
 

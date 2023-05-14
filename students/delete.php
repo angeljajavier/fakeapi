@@ -8,7 +8,7 @@
 	$id = $request['id'];
 
 	// Set the DELETE SQL data
-	$sql = "DELETE FROM tbl_students WHERE id='".$id."'";
+	$sql = "DELETE FROM studentlist WHERE id='".$id."'";
 
 	// Process the query so that we will save the date of birth
 	if ($db->query($sql)) {
