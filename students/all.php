@@ -3,7 +3,7 @@
 	require_once 'config.php';
 
 	// SQL Statement
-	$sql = "SELECT * FROM employees";
+	$sql = "SELECT * FROM studentlist";
 
 	// Process the query
 	$results = $db->query($sql);
